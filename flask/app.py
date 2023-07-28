@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 app.secret_key = secret_key
 
-app.config['PERMANENT_SESSION_LIFETIME'] = 120
+# app.config['PERMANENT_SESSION_LIFETIME'] = 120
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
