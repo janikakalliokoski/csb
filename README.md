@@ -2,7 +2,7 @@
 
 ### How to run the application
 
-1. Go to the [project folder](https://github.com/janikakalliokoski/csb/tree/main/flask) and create Python's virtual environment by running
+1. Go to the [project folder](https://github.com/janikakalliokoski/csb/tree/main/flask) and create Python's virtual environment by running (macOS and Linux)
   ```bash
    python3 -m venv venv
   ```
