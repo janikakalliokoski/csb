@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Update Email</title>
+    </head>
+
+    <body>
+        <h1>Update Email</h1>
+        <p>Current e-mail: <span>{{ user[1] }}</span></p>
+        <form action="/update/{{ session.user_id }}" method="POST">
+            <input type="text" id="new_email" name="new_email" minlength="1" maxlength="50">
+            <input type="submit" value="Update">
+        </form>
+        <br>
+        <a href="/">Go Back</a>
+    </body>

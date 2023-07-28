@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Cyber Security Project</title>
+    </head>
+
+    <body>
+        <h1>Cyber Security Project</h1>
+
+        {% if session.user_id %}
+        <p><strong>Logged in as: </strong><span>{{ session.username }}</span></p>
+        <br>
+        <h3>Your User Info:</h3>
+        <p><strong>email: </strong><span>{{ session.user_email }}</span></p>
+        <p><strong>admin: </strong><span>{{ session.user_admin }}</span></p>
+        <a href="/update/{{ session.user_id }}">Update Your E-mail address</a>
+        <br>
+        <a href="/logout">Log Out</a>
+
+        {% if session.user_admin %}
+
+        <h3>Admin operations:</h3>
+
+        <a href="/view">View All Users</a>
+        <a href="/delete">Delete Users</a>
+        {% endif %}
+
+        {% else %}
+        <a href="/login">Log In</a>
+        <a href="/create">Sign Up</a>
+        {% endif %}
+    </body>

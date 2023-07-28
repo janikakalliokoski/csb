@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div>
+        <h2>Kirjaudu sisään</h2>
+    </div>
+</head>
+
+<body>
+    {% if message %}
+    <div>
+        {{message}}
+    </div>
+    {% endif %}
+    <form action="/login" method="POST">
+        <p>Username:
+        <br>
+        <input type="text" name="username"></p>
+        <p>Password:
+        <br>
+        <input type="password" name="password"></p>
+        <input type="submit" value="Kirjaudu">
+        </form>
+        <br>
+        <a href="/">Go Back</a>
+</body>

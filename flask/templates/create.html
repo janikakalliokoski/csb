@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <div>
+        <h2>Create user</h2>
+    </div>
+</head>
+
+<body>
+    <form action="/create" method="POST">
+        <p>Email:
+            <br>
+            <input type="text" name="email" minlength="1" maxlength="50">
+        </p>
+        <p>Username:
+        <br>
+        <input type="text" name="username" minlength="1" maxlength="20"></p>
+        <p>Password:
+        <br>
+        <input type="password" name="password" minlength="1" maxlength="20"></p>
+        <input type="submit" value="Create user">
+        </form>
+        <br>
+        <a href="/">Go back</a>
+</body>
