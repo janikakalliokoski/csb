@@ -50,6 +50,14 @@
  ```bash
  SECRET_KEY=<your_secret_key>
  ```
+5. Create the database by running (macOS and Linux)
+  ```bash
+  python3 db.py
+  ```
+  or (Windows)
+  ```bash
+  python db.py
+  ```
 6. Start the application by running
   ```bash
   flask run
