@@ -37,6 +37,13 @@ def create():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
+        
+        # if len(username) < 3 or len(username) > 20:
+        #     return render_template("create.html", message="Username should be between 3 and 20 letters")
+        # if len(email) < 3 or len(username) > 50:
+        #     return render_template("create.html", message="e-mail address should be between 3 and 50 letters")
+        # if len(username) < 3 or len(username) > 20:
+        #     return render_template("create.html", message="Password should be between 3 and 20 letters")
 
         sql = "insert into users (email, username, password, admin) values (?, ?, ?, ?)"
         conn.execute(sql, (email, username, password, False))

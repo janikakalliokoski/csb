@@ -8,17 +8,22 @@
 </head>
 
 <body>
+    {% if message %}
+    <div>
+        {{message}}
+    </div>
+    {% endif %}
     <form action="/create" method="POST">
         <p>Email:
-            <br>
-            <input type="text" name="email" minlength="1" maxlength="50">
+        <br>
+        <input type="text" name="email" minlength="3" maxlength="50">
         </p>
         <p>Username:
         <br>
-        <input type="text" name="username" minlength="1" maxlength="20"></p>
+        <input type="text" name="username" minlength="3" maxlength="20"></p>
         <p>Password:
         <br>
-        <input type="password" name="password" minlength="1" maxlength="20"></p>
+        <input type="password" name="password" minlength="3" maxlength="20"></p>
         <input type="submit" value="Create user">
         </form>
         <br>
