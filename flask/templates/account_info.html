@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Cyber Security Project</title>
+    </head>
+
+    <body>
+        <h2>Your User Info:</h3>
+            <p><strong>username: </strong><span>{{ user[1] }}</span></p>
+            <p><strong>e-mail: </strong><span>{{ user[0] }}</span></p>
+            <p><strong>admin: </strong><span>{{ session.user_admin }}</span></p>
+            <a href="/update/{{ session.user_id }}">Update Your E-mail address</a>
+        <br>
+        <a href="/">Go Back</a>
+    <body>

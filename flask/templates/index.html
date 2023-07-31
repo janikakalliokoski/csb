@@ -10,10 +10,7 @@
         {% if session.user_id %}
         <p><strong>Logged in as: </strong><span>{{ session.username }}</span></p>
         <br>
-        <h3>Your User Info:</h3>
-        <p><strong>email: </strong><span>{{ session.user_email }}</span></p>
-        <p><strong>admin: </strong><span>{{ session.user_admin }}</span></p>
-        <a href="/update/{{ session.user_id }}">Update Your E-mail address</a>
+        <a href="/account/{{ session.user_id }}">See your account information</a>
         <br>
         <a href="/logout">Log Out</a>
 

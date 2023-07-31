@@ -137,10 +137,36 @@ def update(user_id: int):
         # sql = f"update users set email='{new_email}' where id='{user_id}'"
         # conn.execute(sql)
 
-        correct_sql = f"update users set email=? where id=?"
+        correct_sql = "update users set email=? where id=?"
         conn.execute(correct_sql, (new_email, user_id))
 
         conn.commit()
         conn.close()
 
         return redirect("/")
+    
+@app.route("/account/<int:user_id>", methods=["GET"])
+def account(user_id):
+    conn = get_db_connection()
+    
+    sql = "select email, username, admin from users where id=?"
+    user = conn.execute(sql, (user_id,)).fetchone()
+    print(user[0], user[1], user[2])
+    if user[2] == 1:
+        admin = True
+    else:
+        admin = False
+    conn.close()
+    
+    html = f"<head><title>Cyber Security Project</title></head>\
+            <body><h2>Your User Info:</h2>\
+            <p><strong>username: </strong><span>{user[1]}</span></p>\
+            <p><strong>e-mail: </strong><span>{user[0]}</span></p>\
+            <p><strong>admin: </strong><span>{ admin }</span></p>\
+            <a href=\"/update/{user_id}\">Update Your E-mail address</a>\
+            <br><a href=\"/\">Go Back</a></body>"
+            
+    return html
+
+    
+    # return render_template("account_info.html", user=user)

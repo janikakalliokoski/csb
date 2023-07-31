@@ -4,3 +4,4 @@ venv
 app.pyc
 db.pyc
 .pylintrc
+database.db
