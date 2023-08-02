@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, request, redirect, session
+from flask import render_template, request, redirect, session, abort
 import sqlite3
 
 import os
@@ -20,6 +20,10 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def is_admin(admin):
+    if admin != True:
+        abort(403)
+
 @app.route("/")
 def index():
     conn = get_db_connection()
@@ -37,7 +41,7 @@ def create():
         username = request.form["username"]
         email = request.form["email"]
         password = request.form["password"]
-        
+
         # if len(username) < 3 or len(username) > 20:
         #     return render_template("create.html", message="Username should be between 3 and 20 letters")
         # if len(email) < 3 or len(username) > 50:
@@ -89,6 +93,9 @@ def logout():
 
 @app.route("/view")
 def view():
+    # admin = session.get("user_admin", 0)
+    # is_admin(admin)
+
     conn = get_db_connection()
     users = conn.execute('select * from users').fetchall()
     conn.close()
@@ -96,6 +103,9 @@ def view():
 
 @app.route("/user/<int:user_id>")
 def show_user(user_id):
+    # admin = session.get("user_admin", 0)
+    # is_admin(admin)
+
     conn = get_db_connection()
     sql = "select id, email, username, admin from users where id=?"
     user = conn.execute(sql, (user_id,)).fetchone()
@@ -108,6 +118,9 @@ def show_user(user_id):
 
 @app.route("/delete", methods=["GET", "POST"])
 def delete():
+    # admin = session.get("user_admin", 0)
+    # is_admin(admin)
+
     conn = get_db_connection()
     if request.method == "GET":
         users = conn.execute('select * from users').fetchall()
@@ -125,6 +138,9 @@ def delete():
 #@app.route("/update/<user_id>", methods=["GET", "POST"])
 @app.route("/update/<int:user_id>", methods=["GET", "POST"])
 def update(user_id: int):
+    # uid = session.get("user_id", 0)
+    # if uid != user_id:
+    #     abort(403)
     conn = get_db_connection()
 
     # sql = f"select * from users where id='{user_id}'"
@@ -151,11 +167,14 @@ def update(user_id: int):
         conn.close()
 
         return redirect("/")
-    
+
 @app.route("/account/<int:user_id>", methods=["GET"])
 def account(user_id):
+    # uid = session.get("user_id", 0)
+    # if uid != user_id:
+    #     abort(403)
     conn = get_db_connection()
-    
+
     sql = "select email, username, admin from users where id=?"
     user = conn.execute(sql, (user_id,)).fetchone()
     print(user[0], user[1], user[2])
@@ -164,7 +183,7 @@ def account(user_id):
     else:
         admin = False
     conn.close()
-    
+
     html = f"<head><title>Cyber Security Project</title></head>\
             <body><h2>Your User Info:</h2>\
             <p><strong>username: </strong><span>{user[1]}</span></p>\
@@ -172,8 +191,8 @@ def account(user_id):
             <p><strong>admin: </strong><span>{ admin }</span></p>\
             <a href=\"/update/{user_id}\">Update Your E-mail address</a>\
             <br><a href=\"/\">Go Back</a></body>"
-            
+
     return html
 
-    
+
     # return render_template("account_info.html", user=user)
